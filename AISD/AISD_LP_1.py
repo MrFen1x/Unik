@@ -10,6 +10,5 @@ for i in range(l, r):
         max_element = a[i]
         max_index = i + 1
 
-# Запись результата в выходной файл
 f= open('OUTPUT.TXT', 'w')
 f.write(f"{max_element} {max_index}")
