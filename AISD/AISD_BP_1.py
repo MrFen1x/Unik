@@ -1,29 +1,23 @@
-def left_binary_search(arr, target):
-    left, right = 0, len(arr) - 1
+n = int(input())
+a = list(map(int, input().split()))
+m = int(input())
+d = list(map(int, input().split()))
+
+total = 0
+
+for i in d:
+    l, r = 0, n-1
     result = -1
 
-    while left <= right:
-        mid = left + (right - left) // 2
-
-        if arr[mid] == target:
-            result = mid
-            right = mid - 1
-        elif arr[mid] < target:
-            left = mid + 1
+    while l <= r:
+        c= l+ (r - l) // 2
+        if a[c] == i:
+            result = c
+            r = c - 1
+        elif a[c] < i:
+            l = c + 1
         else:
-            right = mid - 1
+            r = c - 1
+    total += result
 
-    return result
-
-n = int(input())
-arr = list(map(int, input().split()))
-m = int(input())
-queries = list(map(int, input().split()))
-
-total_sum = 0
-for query in queries:
-    index = left_binary_search(arr, query)
-    total_sum += index
-
-print(total_sum)
-
+print(total)
