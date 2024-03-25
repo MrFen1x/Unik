@@ -1,24 +1,29 @@
-f= open('INPUT.TXT', 'r')
-n = int(f.readline().strip())
-a= list(map(int, f.readline().split()))
-l = int(f.readline().strip())
-b= list(map(int, f.readline().split()))
+def left_binary_search(arr, target):
+    left, right = 0, len(arr) - 1
+    result = -1
 
-result=0
-
-for i in range(0,l):
-    k=b[i]
-    kk = 0
-    left=0
-    right=n
     while left <= right:
-        mid = (left + right) // 2
-        if a[mid] == k:
-            result = result+mid
-            right = mid - 1  # продолжаем искать в левой части массива
-        elif a[mid] < k:
+        mid = left + (right - left) // 2
+
+        if arr[mid] == target:
+            result = mid
+            right = mid - 1
+        elif arr[mid] < target:
             left = mid + 1
         else:
             right = mid - 1
 
-    print(result)
+    return result
+
+n = int(input())
+arr = list(map(int, input().split()))
+m = int(input())
+queries = list(map(int, input().split()))
+
+total_sum = 0
+for query in queries:
+    index = left_binary_search(arr, query)
+    total_sum += index
+
+print(total_sum)
+
