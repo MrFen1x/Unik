@@ -1,25 +1,29 @@
-f= open('INPUT.TXT', 'r')
-n = int(f.readline())
-a= list(map(int, f.readline().split()))
-k = int(f.readline())
-ol = list(map(int, f.readline().split()))
-result = 0
+def left_binary_search(arr, target):
+    left, right = 0, len(arr) - 1
+    result = -1
 
-for item in ol:
-    rt = []
-    l = 0
-    r = n - 1
-    c = (l + r) // 2
-    k = 0
-    while(l < r and k < n-1):
-        if item == a[k]:
-            rt.append(k)
-        elif item > a[k]:
-            l = c + 1
-        else: r = c - 1
-        k= k + 1
-    if len(rt)==0:
-        result=result-1
-    else:
-        result=result+min(rt)
-print (result)
+    while left <= right:
+        mid = left + (right - left) // 2
+
+        if arr[mid] == target:
+            result = mid
+            right = mid - 1
+        elif arr[mid] < target:
+            left = mid + 1
+        else:
+            right = mid - 1
+
+    return result
+
+n = int(input())
+arr = list(map(int, input().split()))
+m = int(input())
+queries = list(map(int, input().split()))
+
+total_sum = 0
+for query in queries:
+    index = left_binary_search(arr, query)
+    total_sum += index
+
+print(total_sum)
+
