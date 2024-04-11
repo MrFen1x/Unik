@@ -1,4 +1,4 @@
-f=open('INPUT.TXT', 'r')
+f=open('../INPUT.TXT', 'r')
 n = int(f.readline())
 a = list(map(int, f.readline().split()))
 
